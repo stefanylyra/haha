@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caixa Surpresa</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.caixa{
+    width:220px;
+    height:220px;
+    background:linear-gradient(#d49b4d,#8b5a2b);
+    border-radius:12px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:80px;
+    transition:.3s;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+
+.caixa:hover{
+    transform:scale(1.05);
+}
+
+#emoji{
+    display:none;
+    font-size:180px;
+    animation:surgir .5s ease;
+}
+
+@keyframes surgir{
+    from{
+        transform:scale(0);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="caixa" id="caixa">
+    🎁
+</div>
+
+<script>
+const caixa = document.getElementById("caixa");
+
+caixa.onclick = function(){
+    caixa.innerHTML = '<div id="emoji">🖕</div>';
+};
+</script>
+
+</body>
+</html>
