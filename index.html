@@ -210,13 +210,13 @@ opacity:1;
 
 <div id="escolha">
 
-    <div class="caixa" onclick="abrirPresente(1)">
-        🎁
-    </div>
+<div class="caixa" onclick="abrirPresente(event,1)">
+    🎁
+</div>
 
-    <div class="caixa" onclick="abrirPresente(2)">
-        🎁
-    </div>
+<div class="caixa" onclick="abrirPresente(event,2)">
+    🎁
+</div>
 
 </div>
 
@@ -233,4 +233,51 @@ opacity:1;
 </div>
 
 </body>
+    <script>
+
+function abrirPresente(event, numero){
+
+    document.querySelectorAll(".caixa").forEach(c=>{
+        c.style.pointerEvents="none";
+    });
+
+    const caixa = event.currentTarget;
+
+    caixa.classList.add("tremendo");
+
+    setTimeout(()=>{
+
+        document.getElementById("escolha").style.display="none";
+
+        document.querySelector(".titulo").style.display="none";
+
+        document.querySelector(".sub").style.display="none";
+
+        document.getElementById("resultado").style.display="flex";
+
+        const img = document.getElementById("imagem");
+
+        if(numero == 1){
+
+            img.src="https://preview.redd.it/big-monke-flips-you-off-what-u-do-v0-861gk9gqka0c1.png?auto=webp&s=4ffd6a12783c45e1a56bb7c19a57ead83aaa4f33";
+
+        }else{
+
+            img.src="https://i.pinimg.com/736x/86/09/81/860981f80e99e0205783931def346370.jpg";
+
+        }
+
+        setTimeout(()=>{
+            img.classList.add("mostrar");
+        },300);
+
+    },1500);
+
+}
+
+function voltar(){
+    location.reload();
+}
+
+</script>
 </html>
