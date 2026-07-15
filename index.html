@@ -55,22 +55,182 @@ body{
         opacity:1;
     }
 }
+    body{
+    background:#111;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.titulo{
+    margin-bottom:10px;
+}
+
+.sub{
+    margin-bottom:40px;
+    color:#bbb;
+}
+
+#escolha{
+    display:flex;
+    gap:60px;
+}
+
+.caixa{
+
+    width:200px;
+    height:200px;
+
+    background:linear-gradient(#d49b4d,#8b5a2b);
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:90px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.caixa:hover{
+    transform:scale(1.08);
+}
+
+.tremendo{
+
+    animation:tremer .12s infinite;
+
+}
+
+@keyframes tremer{
+
+0%{transform:translateX(-4px);}
+50%{transform:translateX(4px);}
+100%{transform:translateX(-4px);}
+
+}
+
+#resultado{
+
+    display:none;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+#imagem{
+
+    width:350px;
+
+    max-width:90vw;
+
+    border-radius:20px;
+
+    opacity:0;
+
+    transform:scale(.3);
+
+    transition:1s;
+
+}
+
+#imagem.mostrar{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+button{
+
+    margin-top:30px;
+
+    padding:14px 30px;
+
+    font-size:18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+#confetes{
+
+    font-size:45px;
+
+    animation:explodir 1s infinite;
+
+    margin-bottom:20px;
+
+}
+
+@keyframes explodir{
+
+0%{
+
+transform:scale(.5);
+
+opacity:0;
+
+}
+
+100%{
+
+transform:scale(1.5);
+
+opacity:1;
+
+}
+
+}
 </style>
 </head>
 
 <body>
 
-<div class="caixa" id="caixa">
-    🎁
+<h1 class="titulo">🎁 Escolha um presente</h1>
+<p class="sub">Você só pode escolher um...</p>
+
+<div id="escolha">
+
+    <div class="caixa" onclick="abrirPresente(1)">
+        🎁
+    </div>
+
+    <div class="caixa" onclick="abrirPresente(2)">
+        🎁
+    </div>
+
 </div>
 
-<script>
-const caixa = document.getElementById("caixa");
+<div id="resultado">
 
-caixa.onclick = function(){
-    caixa.innerHTML = '<div id="emoji">🖕</div>';
-};
-</script>
+    <div id="confetes">🎉✨🎊🎉✨🎊🎉</div>
+
+    <img id="imagem">
+
+    <button onclick="voltar()">
+        🔄 Escolher novamente
+    </button>
+
+</div>
 
 </body>
 </html>
