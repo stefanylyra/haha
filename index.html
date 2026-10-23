@@ -1,277 +1,338 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caixa Surpresa</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-body{
-    background:#111;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.caixa{
-    width:220px;
-    height:220px;
-    background:linear-gradient(#d49b4d,#8b5a2b);
-    border-radius:12px;
-    cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:80px;
-    transition:.3s;
-    box-shadow:0 0 20px rgba(0,0,0,.4);
-}
-
-.caixa:hover{
-    transform:scale(1.05);
-}
-
-#emoji{
-    display:none;
-    font-size:180px;
-    animation:surgir .5s ease;
-}
-
-@keyframes surgir{
-    from{
-        transform:scale(0);
-        opacity:0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAF3EA">
+  <meta name="description" content="Composit profissional e portfólio de ações promocionais.">
+  <title>Meu Composit | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #FAF3EA;
+      --peach: #E5C9AF;
+      --terracotta: #BF7257;
+      --rust: #8D4937;
+      --brown: #46342D;
+      --muted: #88766d;
+      --line: rgba(70,52,45,.16);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
     }
-    to{
-        transform:scale(1);
-        opacity:1;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--sand); color: var(--brown); font-family: var(--sans); }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .site-header { max-width: 1180px; margin: auto; padding: 23px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .wordmark { display: flex; align-items: center; gap: 11px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .mark { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 50%; background: var(--rust); color: var(--sand); font: 600 22px var(--serif); }
+    .header-link { font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--terracotta); padding-bottom: 5px; }
+    .hero { max-width: 1180px; margin: auto; padding: 30px 5% 76px; display: grid; grid-template-columns: .72fr 1.28fr; gap: 48px; align-items: center; }
+    .eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .19em; color: var(--rust); }
+    h1 { font: 500 clamp(43px, 5.4vw, 76px)/1.04 var(--serif); letter-spacing: -.04em; margin: 17px 0 18px; }
+    h1 span { color: var(--terracotta); font-style: italic; }
+    .hero-sub { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 290px; margin-bottom: 26px; }
+    .primary-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--rust); color: var(--sand); padding: 14px 19px; font-size: 11px; font-weight: 700; border: 0; cursor: pointer; transition: background .2s, transform .2s; }
+    .primary-btn:hover { background: var(--brown); transform: translateY(-2px); }
+    .hero-photo-wrap { min-width: 0; position: relative; padding: 0 0 25px 25px; }
+    .hero-photo-wrap:before { content: ""; position: absolute; top: 20px; left: 0; right: 25px; bottom: 0; border: 1px solid var(--peach); }
+    .hero-carousel { position: relative; height: min(57vw, 570px); min-height: 360px; overflow: hidden; background: var(--peach); }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(40,25,20,.55), transparent 38%); }
+    .hero-bottom { position: absolute; bottom: 18px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; color: white; z-index: 2; }
+    .hero-bottom span { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+    .arrows { display: flex; gap: 7px; align-items: center; }
+    .arrow { border: 1px solid rgba(255,255,255,.75); background: rgba(70,52,45,.18); color: white; width: 34px; height: 34px; cursor: pointer; }
+    .arrow:hover { background: var(--sand); color: var(--brown); }
+    .count { font-size: 10px; min-width: 43px; text-align: center; }
+    .section { padding: 65px 5%; }
+    .section-inner { max-width: 1080px; margin: auto; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 25px; }
+    h2 { font: 500 clamp(32px, 4vw, 47px)/1.12 var(--serif); letter-spacing: -.03em; margin: 10px 0 0; }
+    .small-note { color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 300px; margin: 0; }
+    .gallery-section { background: #fffaf4; }
+    .category-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 22px; }
+    .category-btn { border: 1px solid var(--peach); color: var(--brown); background: transparent; padding: 11px 16px; font-size: 11px; cursor: pointer; transition: .2s; }
+    .category-btn.active, .category-btn:hover { background: var(--rust); border-color: var(--rust); color: white; }
+    .gallery-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 35px; align-items: center; }
+    .gallery-photo { position: relative; height: 460px; overflow: hidden; background: var(--peach); }
+    .gallery-photo img { width: 100%; height: 100%; object-fit: cover; transition: opacity .22s; }
+    .photo-count { position: absolute; top: 14px; right: 14px; background: rgba(70,52,45,.88); color: white; font-size: 10px; padding: 9px 11px; letter-spacing: .1em; }
+    .gallery-info { padding: 15px 0; }
+    .gallery-info .eyebrow { margin-bottom: 12px; }
+    .gallery-info h3 { font: 500 36px/1.15 var(--serif); margin: 0 0 12px; }
+    .gallery-info p { color: var(--muted); font-size: 12px; line-height: 1.8; max-width: 320px; }
+    .gallery-controls { display: flex; align-items: center; gap: 8px; margin-top: 20px; }
+    .gallery-controls .arrow { color: var(--brown); border-color: var(--peach); background: transparent; font-size: 17px; }
+    .gallery-controls .arrow:hover { color: white; background: var(--rust); border-color: var(--rust); }
+    .dots { display: flex; gap: 6px; margin-left: 8px; }
+    .dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 10px; background: var(--peach); cursor: pointer; }
+    .dot.active { width: 20px; background: var(--terracotta); }
+    .profile-section { padding-top: 70px; padding-bottom: 75px; }
+    .profile-card { display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; align-items: center; border: 1px solid var(--peach); padding: 30px; background: rgba(255,250,244,.55); }
+    .profile-title { font: 500 31px var(--serif); margin: 8px 0 0; }
+    .profile-title span { color: var(--terracotta); }
+    .measurements { display: grid; grid-template-columns: repeat(3,1fr); gap: 0 18px; }
+    .measurement { padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .measurement span { display: block; color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 7px; }
+    .measurement strong { font-size: 14px; font-weight: 600; }
+    .profile-bottom { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 15px; padding-top: 19px; border-top: 1px solid var(--line); }
+    .mei { display: inline-flex; align-items: center; gap: 9px; color: var(--rust); font-size: 11px; font-weight: 700; }
+    .mei-check { display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: var(--peach); color: var(--rust); }
+    .contact { background: var(--peach); text-align: center; padding: 55px 5%; }
+    .contact h2 { margin: 10px auto 20px; max-width: 600px; }
+    footer { padding: 20px 5%; text-align: center; color: var(--muted); font-size: 10px; }
+    @media (max-width: 760px) {
+      .site-header { padding-top: 16px; padding-bottom: 16px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 26px; padding-bottom: 52px; }
+      h1 { font-size: clamp(43px, 13vw, 64px); }
+      .hero-sub { max-width: 350px; }
+      .hero-photo-wrap { padding-left: 14px; padding-bottom: 14px; }
+      .hero-photo-wrap:before { right: 14px; top: 13px; }
+      .hero-carousel { height: 112vw; min-height: 350px; max-height: 560px; }
+      .section { padding: 52px 5%; }
+      .section-heading { display: block; }
+      .small-note { margin-top: 12px; }
+      .gallery-layout { grid-template-columns: 1fr; gap: 15px; }
+      .gallery-photo { height: 110vw; min-height: 320px; max-height: 500px; }
+      .gallery-info h3 { font-size: 32px; }
+      .profile-card { grid-template-columns: 1fr; padding: 22px; gap: 20px; }
+      .measurements { grid-template-columns: repeat(2,1fr); gap: 0 14px; }
+      .profile-bottom { grid-column: auto; align-items: flex-start; flex-direction: column; }
+      .contact { padding: 48px 6%; }
     }
-}
-    body{
-    background:#111;
-    color:white;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
-}
-
-.titulo{
-    margin-bottom:10px;
-}
-
-.sub{
-    margin-bottom:40px;
-    color:#bbb;
-}
-
-#escolha{
-    display:flex;
-    gap:25px;
-}
-
-.caixa{
-
-  width:140px;
-    height:140px;
-    font-size:60px;
-
-    background:linear-gradient(#d49b4d,#8b5a2b);
-
-    border-radius:15px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.caixa:hover{
-    transform:scale(1.08);
-}
-
-.tremendo{
-
-    animation:tremer .12s infinite;
-
-}
-
-@keyframes tremer{
-
-0%{transform:translateX(-4px);}
-50%{transform:translateX(4px);}
-100%{transform:translateX(-4px);}
-
-}
-
-#resultado{
-
-    display:none;
-
-    flex-direction:column;
-
-    align-items:center;
-
-}
-
-#imagem{
- width:240px;
-    max-width:85vw;
-    border-radius:20px;
-
-    opacity:0;
-
-    transform:scale(.3);
-
-    transition:1s;
-
-}
-
-#imagem.mostrar{
-
-    opacity:1;
-
-    transform:scale(1);
-
-}
-
-button{
-
- margin-top:20px;
-    padding:10px 20px;
-    font-size:16px;
-
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-}
-
-#confetes{
-
-    font-size:45px;
-
-    animation:explodir 1s infinite;
-
-    margin-bottom:20px;
-
-}
-
-@keyframes explodir{
-
-0%{
-
-transform:scale(.5);
-
-opacity:0;
-
-}
-
-100%{
-
-transform:scale(1.5);
-
-opacity:1;
-
-}
-
-}
-</style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="site-header">
+    <a href="#inicio" class="wordmark"><span class="mark" id="monogram">S</span><span id="headerName">Seu nome<br><small style="font-weight:400;letter-spacing:.12em">Composit profissional</small></span></a>
+    <a class="header-link" href="#contato">Contato ↗</a>
+  </header>
 
-<h1 class="titulo">🎁 Escolha um presente</h1>
-<p class="sub">Você só pode escolher um...</p>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <div class="eyebrow">Composit · Portfólio</div>
+        <h1 id="heroName">Seu nome<br><span>profissional.</span></h1>
+        <p class="hero-sub">Panfletagem · Degustação · Eventos</p>
+        <a class="primary-btn" href="#trabalhos">Ver meus trabalhos <span>↓</span></a>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-carousel" id="heroCarousel" aria-label="Carrossel de fotos">
+          <div class="hero-slide active"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=85" alt="Foto ilustrativa de evento"></div>
+          <div class="hero-slide"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85" alt="Foto ilustrativa de evento e público"></div>
+          <div class="hero-slide"><img src="https://images.unsplash.com/photo-1511578314322-379a9d7c6a8f?auto=format&fit=crop&w=1400&q=85" alt="Foto ilustrativa de ação profissional"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-bottom"><span id="heroCaption">Trabalhos em destaque</span><div class="arrows"><button class="arrow" id="heroPrev" aria-label="Foto anterior">←</button><span class="count" id="heroCount">01 / 03</span><button class="arrow" id="heroNext" aria-label="Próxima foto">→</button></div></div>
+        </div>
+      </div>
+    </section>
 
-<div id="escolha">
+    <section class="section gallery-section" id="trabalhos">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div><div class="eyebrow">Galeria</div><h2>Meus trabalhos</h2></div>
+          <p class="small-note">Escolha uma categoria para ver as fotos de cada tipo de ação.</p>
+        </div>
+        <div class="category-tabs" role="tablist" aria-label="Categorias de trabalho">
+          <button class="category-btn active" data-category="panfletagem" role="tab" aria-selected="true">Panfletagem</button>
+          <button class="category-btn" data-category="degustacao" role="tab" aria-selected="false">Degustação</button>
+          <button class="category-btn" data-category="recepcao" role="tab" aria-selected="false">Recepção</button>
+          <button class="category-btn" data-category="eventos" role="tab" aria-selected="false">Eventos</button>
+        </div>
+        <div class="gallery-layout">
+          <div class="gallery-photo"><img id="workImage" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85" alt="Foto de panfletagem"><span class="photo-count" id="workCount">01 / 03</span></div>
+          <div class="gallery-info">
+            <div class="eyebrow" id="workEyebrow">Categoria 01</div>
+            <h3 id="workTitle">Panfletagem</h3>
+            <p id="workDescription">Divulgação de marcas, campanhas e negócios diretamente ao público.</p>
+            <div class="gallery-controls"><button class="arrow" id="workPrev" aria-label="Foto anterior">←</button><button class="arrow" id="workNext" aria-label="Próxima foto">→</button><div class="dots" id="workDots"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="caixa" onclick="abrirPresente(event,1)">
-    🎁
-</div>
+    <section class="section profile-section" id="perfil">
+      <div class="section-inner">
+        <div class="profile-card">
+          <div>
+            <div class="eyebrow">Perfil profissional</div>
+            <h2 class="profile-title">Sobre <span>mim.</span></h2>
+          </div>
+          <div class="measurements">
+            <div class="measurement"><span>Altura</span><strong id="height">1,00 m</strong></div>
+            <div class="measurement"><span>Manequim</span><strong id="size">P / M</strong></div>
+            <div class="measurement"><span>Calçado</span><strong id="shoe">35 / 36</strong></div>
+            <div class="measurement"><span>Busto</span><strong id="bust">—</strong></div>
+            <div class="measurement"><span>Cintura</span><strong id="waist">—</strong></div>
+            <div class="measurement"><span>Quadril</span><strong id="hips">—</strong></div>
+          </div>
+          <div class="profile-bottom">
+            <div class="mei"><span class="mei-check">✓</span><span id="meiText">Possuo MEI</span></div>
+            <span style="font-size:11px;color:var(--muted)">Curitiba e região</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="caixa" onclick="abrirPresente(event,2)">
-    🎁
-</div>
+    <section class="contact" id="contato">
+      <div class="eyebrow">Vamos conversar?</div>
+      <h2>Tem uma ação em mente?</h2>
+      <a class="primary-btn" id="whatsappLink" href="https://wa.me/5541999999999?text=Ol%C3%A1%21%20Vi%20seu%20composit%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade." target="_blank" rel="noopener">Fale comigo pelo WhatsApp ↗</a>
+    </section>
+  </main>
+  <footer>© <span id="year"></span> <span id="footerName">Seu nome</span> · Composit profissional</footer>
 
-</div>
+  <script>
+    /*
+      PERSONALIZAÇÃO:
+      1. Atualize os dados em PROFILE.
+      2. Substitua as URLs de exemplo pelas URLs das suas fotos.
+      3. Atualize o WhatsApp com DDI + DDD + número, apenas dígitos.
+    */
+    const PROFILE = {
+      name: "Seu nome",
+      height: "1,00 m",
+      size: "P / M",
+      shoe: "35 / 36",
+      bust: "—",
+      waist: "—",
+      hips: "—",
+      hasMEI: true,
+      whatsapp: "5541999999999"
+    };
 
-<div id="resultado">
+    const heroPhotos = [
+      { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=85", caption: "Trabalhos em destaque" },
+      { src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85", caption: "Eventos e experiências" },
+      { src: "https://images.unsplash.com/photo-1511578314322-379a9d7c6a8f?auto=format&fit=crop&w=1400&q=85", caption: "Ações promocionais" }
+    ];
 
-    <div id="confetes">🎉✨🎊🎉✨🎊🎉</div>
+    // Cada categoria tem uma galeria independente. Adicione ou remova URLs conforme necessário.
+    const galleries = {
+      panfletagem: {
+        title: "Panfletagem", eyebrow: "Categoria 01",
+        description: "Divulgação de marcas, campanhas e negócios diretamente ao público.",
+        photos: [
+          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1511578314322-379a9d7c6a8f?auto=format&fit=crop&w=1200&q=85"
+        ]
+      },
+      degustacao: {
+        title: "Degustação", eyebrow: "Categoria 02",
+        description: "Apresentação de produtos e interação com consumidores em ações de marca.",
+        photos: [
+          "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85"
+        ]
+      },
+      recepcao: {
+        title: "Recepção", eyebrow: "Categoria 03",
+        description: "Recepção de convidados, orientação de público e apoio à equipe do evento.",
+        photos: [
+          "https://images.unsplash.com/photo-1511578314322-379a9d7c6a8f?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85"
+        ]
+      },
+      eventos: {
+        title: "Eventos", eyebrow: "Categoria 04",
+        description: "Apoio em eventos, ativações e experiências para marcas.",
+        photos: [
+          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=85"
+        ]
+      }
+    };
 
-    <img id="imagem">
+    // Preenche os dados do perfil.
+    document.title = `${PROFILE.name} | Composit profissional`;
+    document.getElementById("headerName").innerHTML = `${PROFILE.name}<br><small style="font-weight:400;letter-spacing:.12em">Composit profissional</small>`;
+    document.getElementById("heroName").innerHTML = `${PROFILE.name.replace(/</g, "&lt;")}<br><span>profissional.</span>`;
+    document.getElementById("monogram").textContent = (PROFILE.name.trim()[0] || "P").toUpperCase();
+    document.getElementById("footerName").textContent = PROFILE.name;
+    document.getElementById("height").textContent = PROFILE.height;
+    document.getElementById("size").textContent = PROFILE.size;
+    document.getElementById("shoe").textContent = PROFILE.shoe;
+    document.getElementById("bust").textContent = PROFILE.bust;
+    document.getElementById("waist").textContent = PROFILE.waist;
+    document.getElementById("hips").textContent = PROFILE.hips;
+    document.getElementById("meiText").textContent = PROFILE.hasMEI ? "Possuo MEI" : "MEI não informado";
+    const phone = PROFILE.whatsapp.replace(/\D/g, "");
+    document.getElementById("whatsappLink").href = `https://wa.me/${phone}?text=${encodeURIComponent("Olá! Vi seu composit e gostaria de conversar sobre uma oportunidade.")}`;
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    <button onclick="voltar()">
-        🔄 Escolher novamente
-    </button>
+    // Carrossel principal automático.
+    const heroNodes = [...document.querySelectorAll(".hero-slide")];
+    let heroIndex = 0;
+    function showHero(next) {
+      heroIndex = (next + heroPhotos.length) % heroPhotos.length;
+      heroNodes.forEach((node, i) => node.classList.toggle("active", i === heroIndex));
+      document.getElementById("heroCaption").textContent = heroPhotos[heroIndex].caption;
+      document.getElementById("heroCount").textContent = `${String(heroIndex + 1).padStart(2,"0")} / ${String(heroPhotos.length).padStart(2,"0")}`;
+    }
+    document.getElementById("heroPrev").addEventListener("click", () => showHero(heroIndex - 1));
+    document.getElementById("heroNext").addEventListener("click", () => showHero(heroIndex + 1));
+    let heroTimer = setInterval(() => showHero(heroIndex + 1), 4500);
+    const heroCarousel = document.getElementById("heroCarousel");
+    heroCarousel.addEventListener("mouseenter", () => clearInterval(heroTimer));
+    heroCarousel.addEventListener("mouseleave", () => { clearInterval(heroTimer); heroTimer = setInterval(() => showHero(heroIndex + 1), 4500); });
 
-</div>
-
-</body>
-    <script>
-
-function abrirPresente(event, numero){
-
-    document.querySelectorAll(".caixa").forEach(c=>{
-        c.style.pointerEvents="none";
+    // Galerias por categoria.
+    let activeCategory = "panfletagem";
+    let photoIndex = 0;
+    const workImage = document.getElementById("workImage");
+    const workDots = document.getElementById("workDots");
+    function renderGallery() {
+      const gallery = galleries[activeCategory];
+      photoIndex = (photoIndex + gallery.photos.length) % gallery.photos.length;
+      workImage.style.opacity = "0";
+      const newSrc = gallery.photos[photoIndex];
+      const preload = new Image();
+      preload.onload = () => { workImage.src = newSrc; workImage.style.opacity = "1"; };
+      preload.onerror = () => { workImage.src = newSrc; workImage.style.opacity = "1"; };
+      preload.src = newSrc;
+      workImage.alt = `Foto de ${gallery.title.toLowerCase()} ${photoIndex + 1}`;
+      document.getElementById("workTitle").textContent = gallery.title;
+      document.getElementById("workEyebrow").textContent = gallery.eyebrow;
+      document.getElementById("workDescription").textContent = gallery.description;
+      document.getElementById("workCount").textContent = `${String(photoIndex + 1).padStart(2,"0")} / ${String(gallery.photos.length).padStart(2,"0")}`;
+      workDots.innerHTML = "";
+      gallery.photos.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.className = `dot${i === photoIndex ? " active" : ""}`;
+        dot.setAttribute("aria-label", `Ver foto ${i + 1}`);
+        dot.addEventListener("click", () => { photoIndex = i; renderGallery(); });
+        workDots.appendChild(dot);
+      });
+    }
+    document.querySelectorAll(".category-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn").forEach(tab => {
+          const selected = tab === button;
+          tab.classList.toggle("active", selected);
+          tab.setAttribute("aria-selected", String(selected));
+        });
+        activeCategory = button.dataset.category;
+        photoIndex = 0;
+        renderGallery();
+      });
     });
-
-    const caixa = event.currentTarget;
-
-    caixa.classList.add("tremendo");
-
-    setTimeout(()=>{
-
-        document.getElementById("escolha").style.display="none";
-
-        document.querySelector(".titulo").style.display="none";
-
-        document.querySelector(".sub").style.display="none";
-
-        document.getElementById("resultado").style.display="flex";
-
-        const img = document.getElementById("imagem");
-
-        if(numero == 1){
-
-            img.src="https://preview.redd.it/big-monke-flips-you-off-what-u-do-v0-861gk9gqka0c1.png?auto=webp&s=4ffd6a12783c45e1a56bb7c19a57ead83aaa4f33";
-
-        }else{
-
-            img.src="https://i.pinimg.com/736x/86/09/81/860981f80e99e0205783931def346370.jpg";
-
-        }
-
-        setTimeout(()=>{
-            img.classList.add("mostrar");
-        },300);
-
-    },1500);
-
-}
-
-function voltar(){
-    location.reload();
-}
-
-</script>
+    document.getElementById("workPrev").addEventListener("click", () => { photoIndex--; renderGallery(); });
+    document.getElementById("workNext").addEventListener("click", () => { photoIndex++; renderGallery(); });
+    renderGallery();
+  </script>
+</body>
 </html>
