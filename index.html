@@ -2,7 +2,91 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAF3EA">
+  <meta name="description" content="Composit profissional e portfólio de ações promocionais, babá e pet sitter.">
+  <title>Meu Composit | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #FAF3EA;
+      --peach: #E5C9AF;
+      --terracotta: #BF7257;
+      --rust: #8D4937;
+      --brown: #46342D;
+      --muted: #88766d;
+      --line: rgba(70,52,45,.16);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--sand); color: var(--brown); font-family: var(--sans); }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .site-header { max-width: 1180px; margin: auto; padding: 23px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .wordmark { display: flex; align-items: center; gap: 11px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .mark { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 50%; background: var(--rust); color: var(--sand); font: 600 22px var(--serif); }
+    .header-link { font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--terracotta); padding-bottom: 5px; }
+    .hero { max-width: 1180px; margin: auto; padding: 30px 5% 76px; display: grid; grid-template-columns: .72fr 1.28fr; gap: 48px; align-items: center; }
+    .eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .19em; color: var(--rust); }
+    h1 { font: 500 clamp(43px, 5.4vw, 76px)/1.04 var(--serif); letter-spacing: -.04em; margin: 17px 0 18px; }
+    h1 span { color: var(--terracotta); font-style: italic; }
+    .hero-sub { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 290px; margin-bottom: 26px; }
+    .primary-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--rust); color: var(--sand); padding: 14px 19px; font-size: 11px; font-weight: 700; border: 0; cursor: pointer; transition: background .2s, transform .2s; }
+    .primary-btn:hover { background: var(--brown); transform: translateY(-2px); }
+    .hero-photo-wrap { min-width: 0; position: relative; padding: 0 0 25px 25px; }
+    .hero-photo-wrap:before { content: ""; position: absolute; top: 20px; left: 0; right: 25px; bottom: 0; border: 1px solid var(--peach); }
+    .hero-carousel { position: relative; height: min(57vw, 570px); min-height: 360px; overflow: hidden; background: var(--peach); }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(40,25,20,.55), transparent 38%); }
+    .hero-bottom { position: absolute; bottom: 18px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; color: white; z-index: 2; }
+    .hero-bottom span { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+    .arrows { display: flex; gap: 7px; align-items: center; }
+    .arrow { border: 1px solid rgba(255,255,255,.75); background: rgba(70,52,45,.18); color: white; width: 34px; height: 34px; cursor: pointer; }
+    .arrow:hover { background: var(--sand); color: var(--brown); }
+    .count { font-size: 10px; min-width: 43px; text-align: center; }
+    .section { padding: 65px 5%; }
+    .section-inner { max-width: 1080px; margin: auto; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 25px; }
+    h2 { font: 500 clamp(32px, 4vw, 47px)/1.12 var(--serif); letter-spacing: -.03em; margin: 10px 0 0; }
+    .small-note { color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 300px; margin: 0; }
+    .gallery-section { background: #fffaf4; }
+    .category-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 22px; }
+    .category-btn { border: 1px solid var(--peach); color: var(--brown); background: transparent; padding: 11px 16px; font-size: 11px; cursor: pointer; transition: .2s; }
+    .category-btn.active, .category-btn:hover { background: var(--rust); border-color: var(--rust); color: white; }
+    .gallery-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 35px; align-items: center; }
+    .gallery-photo { position: relative; height: 460px; overflow: hidden; background: var(--peach); }
+    .gallery-photo img { width: 100%; height: 100%; object-fit: cover; transition: opacity .22s; }
+    .photo-count { position: absolute; top: 14px; right: 14px; background: rgba(70,52,45,.88); color: white; font-size: 10px; padding: 9px 11px; letter-spacing: .1em; }
+    .gallery-info { padding: 15px 0; }
+    .gallery-info .eyebrow { margin-bottom: 12px; }
+    .gallery-info h3 { font: 500 36px/1.15 var(--serif); margin: 0 0 12px; }
+    .gallery-info p { color: var(--muted); font-size: 12px; line-height: 1.8; max-width: 320px; }
+    .gallery-controls { display: flex; align-items: center; gap: 8px; margin-top: 20px; }
+    .gallery-controls .arrow { color: var(--brown); border-color: var(--peach); background: transparent; font-size: 17px; }
+    .gallery-controls .arrow:hover { color: white; background: var(--rust); border-color: var(--rust); }
+    .dots { display: flex; gap: 6px; margin-left: 8px; }
+    .dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 10px; background: var(--peach); cursor: pointer; }
+    .dot.active { width: 20px; background: var(--terracotta); }
+    .profile-section { padding-top: 70px; padding-bottom: 75px; }
+    .profile-card { display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; align-items: center; border: 1px solid var(--peach); padding: 30px; background: rgba(255,250,244,.55); }
+    .profile-title { font: 500 31px var(--serif); margin: 8px 0 0; }
+    .profile-title span { color: var(--terracotta); }
+    .measurements { display: grid; grid-template-columns: repeat(3,1fr); gap: 0 18px; }
+    .measurement { padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .measurement span { display: block; color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 7px; }
+    .measurement strong { font-size: 14px; font-weight: 600; }
+    .profile-bottom { grid-column
   <meta name="theme-color" content="#FAF3EA">
   <meta name="description" content="Composit profissional e portfólio de ações promocionais.">
   <title>Meu Composit | Portfólio</title>
